@@ -1,0 +1,269 @@
+#mounting drive
+from google.colab import drive
+drive.mount('/content/drive')
+
+#importing required libraries
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+
+
+#reading dataset
+df= pd.read_csv("/content/drive/MyDrive/Colab Notebooks/World-population-by-countries-dataset.csv")
+
+#printing the dataset
+df
+#dataset changes
+df.head()
+df.tail()
+df.shape()#shape of the dataset
+df.column()#columns of dataset
+df.dtypes#datatype of the column
+df.info()
+df.describe()
+df = df.fillna(method = "ffill")
+df.head()
+df['Country Code'].unique()
+df['Country Name'].unique()
+
+#Distribution of ages
+
+np.random.seed(42)
+ages = np.random.randint(18, 65, 100)  # Generating 100 random ages between 18 and 65
+plt.figure(figsize=(8, 6))
+plt.hist(ages, bins=10, edgecolor='black') 
+plt.xlabel('Age')
+plt.ylabel('Frequency')
+plt.title('Distribution of Ages')
+plt.grid(True)
+plt.show()
+
+#Distribution of gender
+
+genders = ['Male', 'Female', 'Male', 'Female', 'Male', 'Female', 'Male', 'Female', 'Male', 'Female']
+# Counting occurrences of each gender
+gender_counts = {gender: genders.count(gender) for gender in set(genders)}
+# Creating a bar chart
+plt.figure(figsize=(8, 6))
+plt.bar(gender_counts.keys(), gender_counts.values(), color=['blue', 'pink'])  # Custom colors for bars
+plt.xlabel('Gender')
+plt.ylabel('Count')
+plt.title('Distribution of Genders')
+plt.grid(axis='y')
+plt.show()
+
+country_by_1987 = df.sort_values(by='1987').head(20)
+country_by_1987
+
+#Distribution of ages
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Generating example ages (replace this with your data)
+np.random.seed(42)
+ages = np.random.randint(18, 65, 100)  # Generating 100 random ages between 18 and 65
+
+# Creating a histogram with customized bins and styling
+plt.figure(figsize=(8, 6))
+plt.hist(ages, bins=range(18, 70, 5), edgecolor='black', alpha=0.7)  # Custom bins and transparency
+plt.xlabel('Age')
+plt.ylabel('Frequency')
+plt.title('Distribution of Ages')
+plt.grid(True)
+plt.xticks(range(18, 70, 5))  # Customizing x-axis ticks
+plt.show()
+
+# Generating example gender data (replace this with your data)
+genders = ['Male', 'Female', 'Male', 'Female', 'Male', 'Female', 'Male', 'Female', 'Male', 'Female']
+
+# Counting occurrences of each gender
+gender_counts = {gender: genders.count(gender) for gender in set(genders)}
+
+# Creating a grouped bar chart
+plt.figure(figsize=(8, 6))
+
+bars = plt.bar(gender_counts.keys(), gender_counts.values(), color=['blue', 'pink'])
+
+# Customizing labels and styles
+plt.xlabel('Gender')
+plt.ylabel('Count')
+plt.title('Distribution of Genders')
+plt.grid(axis='y')
+
+# Adding labels to the bars
+for bar in bars:
+    plt.text(bar.get_x() + bar.get_width() / 2 - 0.1, bar.get_height() + 0.2, 
+             f'{bar.get_height()}', ha='center', va='bottom')
+
+plt.show()
+
+#comparison of categories
+# Generating example data for two categories (replace this with your data)
+category_labels = ['Category A', 'Category B', 'Category C', 'Category D']
+values_1 = [20, 35, 30, 25]  # Sample values for category 1
+values_2 = [25, 32, 34, 20]  # Sample values for category 2
+
+# Creating a stacked bar chart for comparison
+plt.figure(figsize=(10, 6))
+
+bars1 = plt.bar(category_labels, values_1, color='skyblue', label='Group 1')
+bars2 = plt.bar(category_labels, values_2, color='salmon', label='Group 2', bottom=values_1)
+
+# Customizing labels and styles
+plt.xlabel('Categories')
+plt.ylabel('Values')
+plt.title('Comparison of Categories')
+plt.legend()
+plt.grid(axis='y')
+
+# Adding values on top of bars
+for bars in [bars1, bars2]:
+    for bar in bars:
+        plt.text(bar.get_x() + bar.get_width() / 2 - 0.1, bar.get_height() + 0.5, 
+                 f'{bar.get_height()}', ha='center', va='bottom')
+
+plt.show()
+
+# Generating example data for a pie chart (replace this with your data)
+labels = ['Category A', 'Category B', 'Category C', 'Category D']
+sizes = [25, 30, 20, 25]  # Sample sizes for each category
+
+# Creating a pie chart
+plt.figure(figsize=(8, 8))
+
+plt.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=140, colors=['gold', 'lightblue', 'lightgreen', 'lightcoral'])
+plt.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle
+plt.title('Distribution of Categories')
+plt.show()
+
+# Generating example time series data (replace this with your data)
+import pandas as pd
+
+dates = pd.date_range('2023-01-01', periods=10)
+values = np.random.randint(1, 10, size=10)  # Sample values for the time series
+
+# Creating a line chart for time series data
+plt.figure(figsize=(10, 6))
+
+plt.plot(dates, values, marker='o', linestyle='-', color='green', linewidth=2, markersize=8)
+plt.xlabel('Date')
+plt.ylabel('Values')
+plt.title('Time Series Data')
+plt.grid(True)
+plt.xticks(rotation=45)  # Rotating x-axis ticks for better readability
+plt.tight_layout()
+plt.show()
+
+
+# Generating example data for a boxplot (replace this with your data)
+np.random.seed(10)
+data = [np.random.normal(0, std, 100) for std in range(1, 4)]  # Generating three sets of random data
+
+# Creating a boxplot
+plt.figure(figsize=(8, 6))
+
+plt.boxplot(data, patch_artist=True)
+plt.xlabel('Data')
+plt.ylabel('Value')
+plt.title('Boxplot of Random Data')
+plt.xticks([1, 2, 3], ['Set 1', 'Set 2', 'Set 3'])
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+
+# Generating example data for a scatter plot (replace this with your data)
+np.random.seed(0)
+x = np.random.rand(50)
+y = 2 * x + np.random.normal(0, 0.1, 50)  # Simulating linear relationship with noise
+
+# Creating a scatter plot to show correlation
+plt.figure(figsize=(8, 6))
+
+plt.scatter(x, y, color='blue', alpha=0.7)
+plt.xlabel('X-axis')
+plt.ylabel('Y-axis')
+plt.title('Scatter Plot - Correlation')
+plt.grid(True)
+plt.show()
+
+
+# Generating example data for a heatmap (replace this with your data)
+np.random.seed(0)
+data = np.random.rand(10, 10)
+
+# Creating a heatmap to visualize a matrix
+plt.figure(figsize=(8, 6))
+
+plt.imshow(data, cmap='viridis', interpolation='nearest')
+plt.colorbar()  # Adding a color bar for reference
+plt.title('Heatmap - Matrix Visualization')
+plt.xlabel('X-axis')
+plt.ylabel('Y-axis')
+plt.show()
+
+# Generating example dataset for country occurrences (replace this with your data)
+np.random.seed(42)
+countries_occurrences = np.random.randint(1, 100, size=100)  # Generating 100 random occurrences
+
+# Creating a histogram for country occurrences
+plt.figure(figsize=(8, 6))
+
+plt.hist(countries_occurrences, bins=20, edgecolor='black', alpha=0.7)  # Adjust the number of bins as needed
+plt.xlabel('Occurrences')
+plt.ylabel('Frequency')
+plt.title('Histogram of Country Occurrences')
+plt.grid(True)
+plt.show()
+
+# Generating example data for stacked bar chart (replace this with your data)
+categories = ['Category A', 'Category B', 'Category C', 'Category D']
+country_data = {
+    'USA': [25, 30, 20, 15],
+    'China': [20, 35, 25, 10],
+    'India': [30, 25, 15, 20]
+}  # Sample data for each category in different countries
+
+# Creating a stacked bar chart for comparison
+plt.figure(figsize=(10, 6))
+
+bottom_values = np.zeros(len(categories))
+
+for country, values in country_data.items():
+    plt.bar(categories, values, label=country, bottom=bottom_values)
+    bottom_values += np.array(values)
+
+plt.xlabel('Categories')
+plt.ylabel('Values')
+plt.title('Comparison of Categories by Country')
+plt.legend()
+plt.grid(axis='y')
+plt.tight_layout()
+plt.show()
+
+# Generating example data for a pie chart (replace this with your data)
+country_labels = ['USA', 'China', 'India', 'Brazil', 'Russia', 'Others']
+country_sizes = [35, 25, 20, 10, 5, 5]  # Sample distribution of countries
+
+# Creating a pie chart for country distribution
+plt.figure(figsize=(8, 8))
+
+plt.pie(country_sizes, labels=country_labels, autopct='%1.1f%%', startangle=90, colors=plt.cm.tab20.colors)
+plt.axis('equal')
+plt.title('Country Distribution')
+plt.show()
+
+# Generating example data for horizontal bar chart (replace this with your data)
+top_countries = ['USA', 'China', 'India', 'Brazil', 'Russia']
+top_frequency = [250, 200, 180, 150, 140]  # Sample frequency counts for top countries
+
+# Creating a horizontal bar chart for top countries
+plt.figure(figsize=(10, 6))
+
+plt.barh(top_countries, top_frequency, color='lightgreen')
+plt.xlabel('Frequency')
+plt.ylabel('Country')
+plt.title('Top Countries by Frequency')
+plt.grid(axis='x')
+plt.tight_layout()
+plt.show()
