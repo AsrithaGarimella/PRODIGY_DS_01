@@ -16,8 +16,8 @@ df
 #dataset changes
 df.head()
 df.tail()
-df.shape()#shape of the dataset
-df.column()#columns of dataset
+df.shape#shape of the dataset
+df.column#columns of dataset
 df.dtypes#datatype of the column
 df.info()
 df.describe()
